@@ -13,10 +13,10 @@ from dataset.utils import preprocess
 from pathlib import Path
 import shutil
 
-checkpoint_dir = '/home/user/code'
+
 out_folder = '/home/user/code/rec/'  # path res.
-csv_path = '/home/user/code/test.csv'  # path CSV
-model_path = '/home/user/code/wnpr_crnn_CRNN2/99_100_Train_24.8658,_Accuracy_0.8283,_Val_8.0170,_Accuracy_0.9193,_lr_1e-05.pth'
+csv_path = '/home/user/code/test_new.csv'  # path CSV
+model_path = '/home/user/code/wnpr_crnn_CRNN(1)/93_100_Train_17.5431,_Accuracy_0.8245,_Val_7.9063,_Accuracy_0.9120,_lr_1.0000000000000002e-06.pth'
 
 
 def predict(model, converter, image_path):
@@ -63,10 +63,10 @@ if __name__ == '__main__':
     count_of_correct = 0
 
     for idx, row in data.iterrows():
-        image_path = checkpoint_dir + '/' + row['filename']
+        image_path = row['filename']
         label = str(row['labels']).strip().lower().replace('\n', '').replace(' ', '').replace('!', '').replace('#', '').replace(
             '@', '').replace('?', '').replace('$', '').replace('-', '').replace('.', '').replace('|', '').replace(
-            '_', '').replace('=', '').replace('-', '')  #.encode("ascii", "ignore").decode()
+            '_', '').replace('=', '').replace('-', '').encode("ascii", "ignore").decode()
 
         # Предсказания модели
         image_label = predict(model, converter, image_path)

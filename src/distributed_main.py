@@ -158,9 +158,9 @@ if __name__ == '__main__':
     parser.add_argument('--checkpoint', type=str, default=None)
     parser.add_argument('--num_epochs', type=int, default=config.epochs)
     parser.add_argument('--gpu_nums', type=int, default=torch.cuda.device_count())
-    parser.add_argument('--checkpoint_dir', type=str, default='/home/user/code')  # '/home/user/code'
-    parser.add_argument('--data_dir', type=str, default='/home/user/code/')  # '/home/user/code/'
-    parser.add_argument('--model_name', type=str, default='/wnpr_crnn_CRNN2')  # '/wnpr_crnn_CRNN2'
+    parser.add_argument('--checkpoint_dir', type=str, default=config.checkpoint_dir)
+    parser.add_argument('--data_dir', type=str, default=config.data_dir)
+    parser.add_argument('--model_name', type=str, default=config.model_name)
 
     args = parser.parse_args()
     os.environ['MASTER_ADDR'] = 'localhost'

@@ -54,8 +54,8 @@ def get_model(config, gpu=0):
     #    is_lstm_bidirectional=config.model_lsrm_is_bidirectional
     #).cuda(gpu)
 
-    #net = nn.parallel.DistributedDataParallel(net, device_ids=[gpu])
-    net = nn.DataParallel(net)
+    net = nn.parallel.DistributedDataParallel(net, device_ids=[gpu])
+    #net = nn.DataParallel(net)
     return net
 
 

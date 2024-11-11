@@ -7,8 +7,7 @@ img_h = 64
 
 img_extensions = ['.jpg', '.png', '.jpeg']
 checkpoint_ext = '.pth'
-russian_alphabet = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
-alphabet = string.digits + russian_alphabet  # + string.ascii_lowercase
+alphabet = string.digits  # + string.ascii_lowercase
 num_class = len(alphabet) + 1
 
 epochs = 100

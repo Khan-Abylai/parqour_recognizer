@@ -30,8 +30,8 @@ class LPDataset(BaseDataset):
         label = str(label).strip().lower().replace(')', '').replace('(', '').replace('\n', '').replace(' ', '').replace('!', '').replace('#', '').replace(
             '@', '').replace('?', '').replace('$', '').replace('-', '').replace('.', '').replace('|', '').replace('_',
                                                                                                                   '').replace(
-            '=', '').replace("*", '').replace("/", '').replace("+", '').replace("'", '').replace("[", '')  # .encode("ascii", "ignore").decode()
-        #label = ''.join(i for i in label if i.isalpha() or i.isdigit())
+            '=', '').replace("*", '').replace("/", '').replace("+", '').replace("'", '').replace("[", '').encode("ascii", "ignore").decode()
+        label = ''.join(i for i in label if i.isalpha() or i.isdigit())
         if self.return_filepath:
             return image, label, self.img_paths[index]
         else:
