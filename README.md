@@ -1,7 +1,5 @@
 # parking_recognizer
 
-
-
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
@@ -18,6 +16,20 @@ cd existing_repo
 git remote add origin https://gitlab.com/parquor/parqourcv/parking_recognizer.git
 git branch -M main
 git push -uf origin main
+```
+
+## Docker Installation
+
+To run the Parking Recognizer project using Docker, you can use the provided `Dockerfile` located in the `dockerfiles` directory to create a Docker image and start the container.
+
+To build the Docker image, navigate to the project directory and use the following command:
+
+```bash
+docker load -i dockerfiles/docker_image.tar
+```
+
+```bash
+docker run -d --name parking_recognizer_container parking_recognizer
 ```
 
 ## Integrate with your tools
