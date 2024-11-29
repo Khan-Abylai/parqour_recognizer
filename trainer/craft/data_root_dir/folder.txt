@@ -1,1 +1,3 @@
 place dataset folder here
+1. Train: ch4_training_images; ch4_training_localization_transcription_gt
+2. Test: ch4_test_images; ch4_test_localization_transcription_gt

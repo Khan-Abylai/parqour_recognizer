@@ -16,6 +16,7 @@ from dataset import hierarchical_dataset, AlignCollate, Batch_Balanced_Dataset
 from model import Model
 from test import validation
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(device)
 
 def count_parameters(model):
     print("Modules, Parameters")
@@ -29,7 +30,8 @@ def count_parameters(model):
     print(f"Total Trainable Params: {total_params}")
     return total_params
 
-def train(opt, show_number = 2, amp=False):
+def train(opt, show_number = 15, amp=False):
+    print(f"Начало обучения с параметрами: {opt}")
     """ dataset preparation """
     if not opt.data_filtering_off:
         print('Filtering the images containing characters which are not in opt.character')
@@ -37,7 +39,9 @@ def train(opt, show_number = 2, amp=False):
 
     opt.select_data = opt.select_data.split('-')
     opt.batch_ratio = opt.batch_ratio.split('-')
+    print("Загрузка данных...")
     train_dataset = Batch_Balanced_Dataset(opt)
+    print("Данные успешно загружены.")
 
     log = open(f'./saved_models/{opt.experiment_name}/log_dataset.txt', 'a', encoding="utf8")
     AlignCollate_valid = AlignCollate(imgH=opt.imgH, imgW=opt.imgW, keep_ratio_with_pad=opt.PAD, contrast_adjust=opt.contrast_adjust)
@@ -258,8 +262,10 @@ def train(opt, show_number = 2, amp=False):
                 predicted_result_log = f'{dashed_line}\n{head}\n{dashed_line}\n'
                 
                 #show_number = min(show_number, len(labels))
-                
-                start = random.randint(0,len(labels) - show_number )    
+                if len(labels) >= show_number:
+                    start = random.randint(0, len(labels) - show_number)
+                else:
+                    start = 0  # Или другое значение, если меток меньше, чем show_number
                 for gt, pred, confidence in zip(labels[start:start+show_number], preds[start:start+show_number], confidence_score[start:start+show_number]):
                     if 'Attn' in opt.Prediction:
                         gt = gt[:gt.find('[s]')]

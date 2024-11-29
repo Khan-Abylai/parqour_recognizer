@@ -13,18 +13,18 @@ train:
   use_synthtext: False # If you want to combine SynthText in train time as CRAFT did, you can turn on this option
   synth_data_dir: "/data/SynthText/"
   synth_ratio: 5
-  real_dataset: custom
-  ckpt_path: "./pretrained_model/CRAFT_clr_amp_29500.pth"
-  eval_interval: 1000
-  batch_size: 5
+  real_dataset: custom  # Используется пользовательский датасет
+  ckpt_path: "./CRAFT_clr_amp_29500.pth"  # Путь к предобученной модели
+  eval_interval: 1000  # Проверка каждые 500 итераций
+  batch_size: 4  # Настроено для экономии памяти
   st_iter: 0
   end_iter: 25000
   lr: 0.0001
   lr_decay: 7500
   gamma: 0.2
   weight_decay: 0.00001
-  num_workers: 0 # On single gpu, train.py execution only works when num worker = 0 / On multi-gpu, you can set num_worker > 0 to speed up
-  amp: True
+  num_workers: 4  # Настроено для многопоточности
+  amp: True  # Используем AMP для ускорения
   loss: 2
   neg_rto: 0.3
   n_min_neg: 5000
@@ -97,4 +97,4 @@ test:
     mag_ratio: 1.75
     poly: False
     cuda: True
-    vis_opt: False
+    vis_opt: True  # Визуализация результатов

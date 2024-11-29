@@ -232,9 +232,9 @@ def load_icdar2015_gt(dataFolder, isTraing=False):
             box_points = [int(box_info[j]) for j in range(8)]
             word = box_info[8:]
             word = ",".join(word)
-            box_points = np.array(box_points, np.int32).reshape(4, 2)
+            box_points = np.array(box_points, int).reshape(4, 2)
             cv2.polylines(
-                image, [np.array(box_points).astype(np.int)], True, (0, 0, 255), 1
+                image, [np.array(box_points).astype(int)], True, (0, 0, 255), 1
             )
             box_info_dict["points"] = box_points
             box_info_dict["text"] = word
